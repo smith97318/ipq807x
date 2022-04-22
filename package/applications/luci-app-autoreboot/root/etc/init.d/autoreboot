@@ -1,0 +1,74 @@
+#!/bin/sh /etc/rc.common
+START=50
+
+run_reboot()
+{
+	local enable
+	config_get_bool enable $1 enable
+
+	if [ $enable = 1 ]; then
+		local minute
+		local hour
+		local jede
+		config_get week $1 week
+		config_get minute $1 minute
+		config_get hour $1 hour
+		config_get jede $1 jede
+    if [ $minute = 0 ] ; then
+        minute="00"
+		fi
+    if [ $week = 7 ] ; then
+        week="*"
+		fi
+    if [ $week = 8 ] ; then
+        week="*"
+                fi
+    if [ $jede = 8 ] ; then
+	jede="*"
+     		fi
+    if [ $jede = 2 ] ; then
+        jede="*/2" 
+                fi
+    if [ $jede = 3 ] ; then
+        jede="*/3" 
+                fi
+    if [ $jede = 4 ] ; then
+        jede="*/4" 
+                fi
+    if [ $jede = 5 ] ; then
+        jede="*/5" 
+                fi
+    if [ $jede = 6 ] ; then
+        jede="*/6" 
+                fi
+    if [ $jede = 7 ] ; then
+        jede="*/7" 
+                fi
+    if [ $jede = 15 ] ; then
+        jede="*/15"
+                fi
+    if [ $jede = 30 ] ; then
+        jede="*/30"
+                fi
+		sed -i '/reboot/d' /etc/crontabs/root >/dev/null 2>&1
+		/etc/init.d/cron restart
+		echo "$minute $hour $jede * $week sleep 70 && touch /etc/banner && reboot" >> /etc/crontabs/root
+		echo "Auto REBOOT has started."
+        else
+                sed -i '/reboot/d' /etc/crontabs/root >/dev/null 2>&1
+                /etc/init.d/cron restart
+                echo "Auto REBOOT has started."
+        fi
+
+}
+
+start()
+{
+	config_load autoreboot
+	config_foreach run_reboot login
+}
+
+stop()
+{
+	echo "Auto REBOOT has stoped."
+}
