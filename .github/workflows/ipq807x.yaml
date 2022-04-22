@@ -30,7 +30,7 @@ jobs:
                 make defconfig
 
             - name: Download package sources
-              run: make download V=s
+              run: make -j8 download V=s
 
             - name: Build tools
               run: |
