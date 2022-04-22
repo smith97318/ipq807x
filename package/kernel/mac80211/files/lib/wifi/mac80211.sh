@@ -168,20 +168,28 @@ detect_mac80211() {
 		fi
 
 		uci -q batch <<-EOF
-			set wireless.radio${devidx}=wifi-device
-			set wireless.radio${devidx}.type=mac80211
-			${dev_id}
-			set wireless.radio${devidx}.channel=${channel}
-			set wireless.radio${devidx}.band=${mode_band}
-			set wireless.radio${devidx}.htmode=$htmode
-			set wireless.radio${devidx}.disabled=1
+                        set wireless.radio${devidx}=wifi-device
+                        set wireless.radio${devidx}.type=mac80211
+                        ${dev_id}
+                        set wireless.radio0.channel=40
+                        set wireless.radio1.channel=9
+                        set wireless.radio${devidx}.band=${mode_band}
+                        set wireless.radio0.htmode=HE80
+                        set wireless.radio1.htmode=HE40
+                        set wireless.radio${devidx}.disabled=0
+                        set wireless.radio${devidx}.country=US
+                        set wireless.radio0.txpower=25
+                        set wireless.radio1.txpower=21
+                        set wireless.radio${devidx}.mu_beamformer=1
 
-			set wireless.default_radio${devidx}=wifi-iface
-			set wireless.default_radio${devidx}.device=radio${devidx}
-			set wireless.default_radio${devidx}.network=lan
-			set wireless.default_radio${devidx}.mode=ap
-			set wireless.default_radio${devidx}.ssid=OpenWrt
-			set wireless.default_radio${devidx}.encryption=none
+                        set wireless.default_radio${devidx}=wifi-iface
+                        set wireless.default_radio${devidx}.device=radio${devidx}
+                        set wireless.default_radio${devidx}.network=lan
+                        set wireless.default_radio${devidx}.mode=ap
+                        set wireless.default_radio0.ssid=AX6-5G
+                        set wireless.default_radio1.ssid=AX6
+                        set wireless.default_radio${devidx}.encryption=sae-mixed
+                        set wireless.default_radio${devidx}.key=tinybreeze246
 EOF
 		uci -q commit wireless
 
