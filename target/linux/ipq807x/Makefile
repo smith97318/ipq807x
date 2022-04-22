@@ -15,6 +15,12 @@ DEFAULT_PACKAGES += \
 	kmod-usb3 kmod-usb-dwc3 kmod-usb-dwc3-qcom \
 	kmod-leds-gpio kmod-gpio-button-hotplug \
 	ath11k-firmware-ipq8074 kmod-ath11k-ahb \
-	wpad-basic-wolfssl uboot-envtools
+	wpad-wolfssl uboot-envtools \
+	autocore-arm \
+        kmod-qca-nss-dp \
+        luci luci-compat luci-lib-base luci-lib-opkg \
+        luci-app-arpbind luci-app-autoreboot luci-app-ttyd \
+        luci-app-zerotier luci-app-wireguard luci-proto-openconnect \
+        htop
 
 $(eval $(call BuildTarget))
