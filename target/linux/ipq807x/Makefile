@@ -18,9 +18,9 @@ DEFAULT_PACKAGES += \
 	wpad-wolfssl uboot-envtools \
 	autocore-arm \
         kmod-qca-nss-dp \
-        luci luci-compat luci-lib-base luci-lib-opkg \
+        luci luci-compat luci-lib-base luci-lib-ipkg \
         luci-app-arpbind luci-app-autoreboot luci-app-ttyd \
-        luci-app-zerotier luci-app-wireguard luci-proto-openconnect \
+        luci-proto-openconnect \
         htop
 
 $(eval $(call BuildTarget))
