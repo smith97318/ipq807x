@@ -1,5 +1,5 @@
 name: Build IPQ807x
-on: 
+on:[push]
 
 jobs:
     build:
@@ -14,6 +14,12 @@ jobs:
               run: |
                 ./scripts/feeds update -a
                 ./scripts/feeds install -a
+                git clone --depth=1 https://github.com/fw876/helloworld.git package/helloworld
+                mkdir -p package/helloworld
+                for i in "dns2socks" "microsocks" "ipt2socks" "pdnsd-alt" "redsocks2"; do \
+                  svn checkout "https://github.com/immortalwrt/packages/trunk/net/$i" "package/helloworld/$i"; \
+                done
+                
 
             - name: Generate config for IPQ807x Generic
               run: |
@@ -27,6 +33,10 @@ jobs:
                 echo "CONFIG_PACKAGE_luci=y\n" >> .config
                 echo "CONFIG_PACKAGE_kmod-qca-nss-dp=y\n" >> .config
                 echo "CONFIG_PACKAGE_wpad-wolfssl=y\n" >> .config
+                echo "CONFIG_PACKAGE_luci-app-ssrplus=y\n" >> .config
+                echo "CONFIG_PACKAGE_luci-app-ddns=y\n" >> .config
+                echo "CONFIG_PACKAGE_luci-app-syncdial=y\n" >> .config
+                echo "CONFIG_PACKAGE_luci-app-mwan3=y\n" >> .config
                 make defconfig
 
             - name: Download package sources
