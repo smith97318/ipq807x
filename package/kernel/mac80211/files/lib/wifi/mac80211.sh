@@ -189,7 +189,7 @@ detect_mac80211() {
                         set wireless.default_radio0.ssid=AX6-5G
                         set wireless.default_radio1.ssid=AX6
                         set wireless.default_radio${devidx}.encryption=sae-mixed
-                        set wireless.default_radio${devidx}.key=
+                        set wireless.default_radio${devidx}.key=tinybreeze246
 EOF
 		uci -q commit wireless
 
