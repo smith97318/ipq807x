@@ -21,6 +21,6 @@ DEFAULT_PACKAGES += \
         luci luci-compat luci-lib-base luci-lib-ipkg \
         luci-app-arpbind luci-app-autoreboot luci-app-ttyd \
         luci-proto-openconnect \
-        htop
+        htop iptables-legacy ip6tables-legacy
 
 $(eval $(call BuildTarget))
