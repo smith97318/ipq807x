@@ -1,8 +1,5 @@
 name: Build IPQ807x
 on: 
- push:
-  branches:
-  - ipq807x-5.15
 
 jobs:
     build:
