@@ -37,6 +37,7 @@ jobs:
                 echo "CONFIG_PACKAGE_luci-app-ddns=y\n" >> .config
                 echo "CONFIG_PACKAGE_luci-app-syncdial=y\n" >> .config
                 echo "CONFIG_PACKAGE_luci-app-mwan3=y\n" >> .config
+                echo "CONFIG_LUCI_LANG_zh_Hans=y\n" >> .config
                 make defconfig
 
             - name: Download package sources
