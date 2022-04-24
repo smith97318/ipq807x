@@ -33,7 +33,7 @@ jobs:
                 echo "CONFIG_PACKAGE_luci=y\n" >> .config
                 echo "CONFIG_PACKAGE_kmod-qca-nss-dp=y\n" >> .config
                 echo "CONFIG_PACKAGE_wpad-wolfssl=y\n" >> .config
-                echo "CONFIG_PACKAGE_luci-app-ssrplus=y\n" >> .config
+                echo "CONFIG_PACKAGE_luci-app-ssr-plus=y\n" >> .config
                 echo "CONFIG_PACKAGE_luci-app-ddns=y\n" >> .config
                 echo "CONFIG_PACKAGE_luci-app-syncdial=y\n" >> .config
                 echo "CONFIG_PACKAGE_luci-app-mwan3=y\n" >> .config
